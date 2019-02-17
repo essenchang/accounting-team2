@@ -57,11 +57,11 @@ public class Accounting {
     }
 
     private double getSingleDayBudget(LocalDate date) {
-        return (double) getBudgetByDate(date).amount / date.lengthOfMonth();
+        return (double) getBudgetByDate(date).getAmount() / date.lengthOfMonth();
     }
 
     private double getFullMonthAmount(LocalDate date) {
-        return getBudgetByDate(date).amount;
+        return getBudgetByDate(date).getAmount();
     }
 
     public double totalAmount(Timeline timeline) {

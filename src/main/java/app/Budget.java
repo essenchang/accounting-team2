@@ -7,11 +7,16 @@ public class Budget {
     private final static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMM");
 
     public String yearMonth;
-    public int amount;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    private int amount;
 
     public Budget(String yearMonth, int amount) {
         this.yearMonth = yearMonth;
-        this.amount = amount;
+        this.setAmount(amount);
     }
 
     static YearMonth getYearMonth(DateTimeFormatter dateTimeFormatter, String yearMonth) {
@@ -20,5 +25,9 @@ public class Budget {
 
     boolean isMonthMatch(int month) {
         return month == getYearMonth(dateTimeFormatter, yearMonth).getMonthValue();
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }
