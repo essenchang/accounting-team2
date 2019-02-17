@@ -25,7 +25,7 @@ public class Accounting {
         return month == getYearMonth(budget.yearMonth).getMonthValue();
     }
 
-    private Budget getFullMonthBudget(LocalDate date) {
+    private Budget getBudgetByDate(LocalDate date) {
         List<Budget> budgets = budget.getAll();
         int month = date.getMonthValue();
         for (Budget budget : budgets) {
@@ -37,7 +37,7 @@ public class Accounting {
     }
 
     private double getUnCrossMonthBudget(Timeline timeline) {
-        Budget monthBudget = getFullMonthBudget(timeline.getStart());
+        Budget monthBudget = getBudgetByDate(timeline.getStart());
         if (monthBudget == null) {
             return 0;
         }
@@ -50,7 +50,7 @@ public class Accounting {
         if (Period.between(timeline.getStart(), timeline.getEnd()).getMonths() > 1) {
             LocalDate intervalDate = timeline.getStart();
             for (int i = timeline.getStart().getMonthValue(); i < timeline.getEnd().getMonthValue() - 1; i++) {
-                intervalAmount += getFullMonthBudget(intervalDate.plusMonths(1)).amount;
+                intervalAmount += getBudgetByDate(intervalDate.plusMonths(1)).amount;
             }
         }
         return getStartMonthAmount(timeline.getStart()) + getEndMonthAmount(timeline.getEnd()) + intervalAmount;
@@ -68,7 +68,8 @@ public class Accounting {
     }
 
     private double getSingleDayBudget(LocalDate date) {
-        return getFullMonthBudget(date).amount / date.lengthOfMonth();
+        int amount = getBudgetByDate(date).amount;
+        return amount / date.lengthOfMonth();
     }
 
     public double totalAmount(Timeline timeline) {
