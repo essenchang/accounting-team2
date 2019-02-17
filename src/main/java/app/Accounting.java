@@ -9,22 +9,17 @@ import java.util.List;
 
 public class Accounting {
 
-    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMM");
     private IBudgetRepo budget;
 
     public Accounting(IBudgetRepo budget) {
         this.budget = budget;
     }
 
-    private boolean isMonthMatch(Budget budget, int month) {
-        return month == Budget.getYearMonth(dateTimeFormatter, budget.yearMonth).getMonthValue();
-    }
-
     private Budget getBudgetByDate(LocalDate date) {
         List<Budget> budgets = budget.getAll();
         int month = date.getMonthValue();
         for (Budget budget : budgets) {
-            if (isMonthMatch(budget, month)) {
+            if (budget.isMonthMatch(month, this)) {
                 return budget;
             }
         }
