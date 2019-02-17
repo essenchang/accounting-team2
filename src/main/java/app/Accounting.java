@@ -4,7 +4,6 @@ import app.repository.IBudgetRepo;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Accounting {
@@ -19,7 +18,7 @@ public class Accounting {
         List<Budget> budgets = budget.getAll();
         int month = date.getMonthValue();
         for (Budget budget : budgets) {
-            if (budget.isMonthMatch(month, this)) {
+            if (budget.isMonthMatch(month)) {
                 return budget;
             }
         }

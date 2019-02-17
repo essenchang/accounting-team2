@@ -18,7 +18,7 @@ public class Budget {
         return YearMonth.parse(yearMonth, dateTimeFormatter);
     }
 
-    boolean isMonthMatch(int month, Accounting accounting) {
+    boolean isMonthMatch(int month) {
         return month == getYearMonth(dateTimeFormatter, yearMonth).getMonthValue();
     }
 }
