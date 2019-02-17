@@ -57,8 +57,7 @@ public class Accounting {
     }
 
     private double getSingleDayBudget(LocalDate date) {
-        double amount = getFullMonthAmount(date);
-        return amount / date.lengthOfMonth();
+        return getFullMonthAmount(date) / date.lengthOfMonth();
     }
 
     private double getFullMonthAmount(LocalDate date) {
