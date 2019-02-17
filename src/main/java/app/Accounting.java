@@ -35,13 +35,13 @@ public class Accounting {
         return null;
     }
 
-    private double getSameMonth(LocalDate start, LocalDate end) {
-        Budget monthBudget = getFullMonthBudget(start);
+    private double getSameMonth(Timeline timeline) {
+        Budget monthBudget = getFullMonthBudget(timeline.getStart());
         if (monthBudget == null) {
             return 0;
         }
-        Period p = Period.between(start, end);
-        return (getSingleDayBudget(start)) * (p.getDays() + 1);
+        Period p = Period.between(timeline.getStart(), timeline.getEnd());
+        return (getSingleDayBudget(timeline.getStart())) * (p.getDays() + 1);
     }
 
     private double getCrossMonthBudget(Timeline timeline) {
@@ -76,6 +76,6 @@ public class Accounting {
             return 0;
         }
         return timeline.isCrossMonth() ?
-                getCrossMonthBudget(new Timeline(timeline.getStart(), timeline.getEnd())) : getSameMonth(timeline.getStart(), timeline.getEnd());
+                getCrossMonthBudget(new Timeline(timeline.getStart(), timeline.getEnd())) : getSameMonth(new Timeline(timeline.getStart(), timeline.getEnd()));
     }
 }
