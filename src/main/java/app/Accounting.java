@@ -44,10 +44,6 @@ public class Accounting {
         return (getSingleDayBudget(start)) * (p.getDays() + 1);
     }
 
-    private boolean isCrossMonth(Timeline timeline) {
-        return timeline.getStart().getMonthValue() != timeline.getEnd().getMonthValue();
-    }
-
     private double getCrossMonthBudget(LocalDate start, LocalDate end) {
         int intervalAmount = 0;
         if (Period.between(start, end).getMonths() > 1) {
@@ -79,7 +75,7 @@ public class Accounting {
             // 開始大於結束當錯誤輸入回傳0
             return 0;
         }
-        return isCrossMonth(new Timeline(timeline.getStart(), timeline.getEnd())) ?
+        return new Timeline(timeline.getStart(), timeline.getEnd()).isCrossMonth() ?
                 getCrossMonthBudget(timeline.getStart(), timeline.getEnd()) : getSameMonth(timeline.getStart(), timeline.getEnd());
     }
 }

@@ -18,4 +18,8 @@ public class Timeline {
     public LocalDate getEnd() {
         return end;
     }
+
+    boolean isCrossMonth() {
+        return getStart().getMonthValue() != getEnd().getMonthValue();
+    }
 }
