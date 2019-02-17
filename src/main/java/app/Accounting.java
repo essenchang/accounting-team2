@@ -26,9 +26,9 @@ public class Accounting {
     }
 
     private Budget getFullMonthBudget(LocalDate date) {
-        List<Budget> list = budget.getAll();
+        List<Budget> budgets = budget.getAll();
         int month = date.getMonthValue();
-        for (Budget budget : list) {
+        for (Budget budget : budgets) {
             if (isMonthMatch(budget, month)) {
                 return budget;
             }
