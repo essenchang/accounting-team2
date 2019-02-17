@@ -1,12 +1,14 @@
 package app;
 
-import static org.junit.Assert.*;
-
 import app.repository.IBudgetRepo;
+import org.junit.Test;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AccountingTest {
 
@@ -19,7 +21,7 @@ public class AccountingTest {
             @Override
             public List<Budget> getAll() {
                 ArrayList<Budget> list = new ArrayList<>();
-                list.add(new Budget("201904",3000));
+                list.add(new Budget("201904", 3000));
                 return list;
             }
         });
@@ -35,7 +37,7 @@ public class AccountingTest {
             @Override
             public List<Budget> getAll() {
                 ArrayList<Budget> list = new ArrayList<>();
-                list.add(new Budget("201904",3000));
+                list.add(new Budget("201904", 3000));
                 return list;
             }
         });
@@ -50,7 +52,7 @@ public class AccountingTest {
             @Override
             public List<Budget> getAll() {
                 ArrayList<Budget> list = new ArrayList<>();
-                list.add(new Budget("201904",3000));
+                list.add(new Budget("201904", 3000));
                 return list;
             }
         });
@@ -65,7 +67,7 @@ public class AccountingTest {
             @Override
             public List<Budget> getAll() {
                 ArrayList<Budget> list = new ArrayList<>();
-                list.add(new Budget("201904",3000));
+                list.add(new Budget("201904", 3000));
                 return list;
             }
         });
@@ -87,8 +89,8 @@ public class AccountingTest {
     public void CrossMonths() {
         accounting = new Accounting(() -> {
             ArrayList<Budget> list = new ArrayList<>();
-            list.add(new Budget("201901",3100));
-            list.add(new Budget("201902",1400));
+            list.add(new Budget("201901", 3100));
+            list.add(new Budget("201902", 1400));
             return list;
         });
         LocalDate start = LocalDate.of(2019, 1, 31);
@@ -100,9 +102,9 @@ public class AccountingTest {
     public void CrossNoBudgetMonths() {
         accounting = new Accounting(() -> {
             ArrayList<Budget> list = new ArrayList<>();
-            list.add(new Budget("201902",1400));
-            list.add(new Budget("201903",3100));
-            list.add(new Budget("201904",3000));
+            list.add(new Budget("201902", 1400));
+            list.add(new Budget("201903", 3100));
+            list.add(new Budget("201904", 3000));
             return list;
         });
         LocalDate start = LocalDate.of(2019, 2, 1);
@@ -114,8 +116,8 @@ public class AccountingTest {
     public void CrossYears() {
         accounting = new Accounting(() -> {
             ArrayList<Budget> list = new ArrayList<>();
-            list.add(new Budget("201812",3100));
-            list.add(new Budget("201901",3100));
+            list.add(new Budget("201812", 3100));
+            list.add(new Budget("201901", 3100));
             return list;
         });
         LocalDate start = LocalDate.of(2018, 12, 31);
@@ -127,11 +129,11 @@ public class AccountingTest {
     public void ErrorDate() {
         accounting = new Accounting(() -> {
             ArrayList<Budget> list = new ArrayList<>();
-            list.add(new Budget("201812",3100));
-            list.add(new Budget("201901",3100));
-            list.add(new Budget("201902",2800));
-            list.add(new Budget("201904",3000));
-            list.add(new Budget("201912",3100));
+            list.add(new Budget("201812", 3100));
+            list.add(new Budget("201901", 3100));
+            list.add(new Budget("201902", 2800));
+            list.add(new Budget("201904", 3000));
+            list.add(new Budget("201912", 3100));
             return list;
         });
         LocalDate start = LocalDate.of(2019, 4, 1);
