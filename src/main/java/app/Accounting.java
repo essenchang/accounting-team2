@@ -4,7 +4,6 @@ import app.repository.IBudgetRepo;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -17,12 +16,8 @@ public class Accounting {
         this.budget = budget;
     }
 
-    private YearMonth getYearMonth(String yearMonth) {
-        return YearMonth.parse(yearMonth, dateTimeFormatter);
-    }
-
     private boolean isMonthMatch(Budget budget, int month) {
-        return month == getYearMonth(budget.yearMonth).getMonthValue();
+        return month == Budget.getYearMonth(dateTimeFormatter, budget.yearMonth).getMonthValue();
     }
 
     private Budget getBudgetByDate(LocalDate date) {

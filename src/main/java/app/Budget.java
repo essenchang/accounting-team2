@@ -1,5 +1,8 @@
 package app;
 
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+
 public class Budget {
     public String yearMonth;
     public int amount;
@@ -7,5 +10,9 @@ public class Budget {
     public Budget(String yearMonth, int amount) {
         this.yearMonth = yearMonth;
         this.amount = amount;
+    }
+
+    static YearMonth getYearMonth(DateTimeFormatter dateTimeFormatter, String yearMonth) {
+        return YearMonth.parse(yearMonth, dateTimeFormatter);
     }
 }
