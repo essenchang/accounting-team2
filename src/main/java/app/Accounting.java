@@ -36,7 +36,7 @@ public class Accounting {
         return null;
     }
 
-    private double getSameMonth(Timeline timeline) {
+    private double getUnCrossMonthBudget(Timeline timeline) {
         Budget monthBudget = getFullMonthBudget(timeline.getStart());
         if (monthBudget == null) {
             return 0;
@@ -77,6 +77,6 @@ public class Accounting {
             return 0;
         }
         return timeline.isCrossMonth() ?
-                getCrossMonthBudget(timeline) : getSameMonth(timeline);
+                getCrossMonthBudget(timeline) : getUnCrossMonthBudget(timeline);
     }
 }
