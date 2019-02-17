@@ -39,7 +39,7 @@ public class Accounting {
         if (Period.between(timeline.getStart(), timeline.getEnd()).getMonths() > 1) {
             LocalDate intervalDate = timeline.getStart();
             for (int i = timeline.getStart().getMonthValue(); i < timeline.getEnd().getMonthValue() - 1; i++) {
-                intervalAmount += getBudgetByDate(intervalDate.plusMonths(1)).amount;
+                intervalAmount += getFullMonthAmount(intervalDate.plusMonths(1));
             }
         }
         return getStartMonthAmount(timeline.getStart()) + getEndMonthAmount(timeline.getEnd()) + intervalAmount;
@@ -57,8 +57,12 @@ public class Accounting {
     }
 
     private double getSingleDayBudget(LocalDate date) {
-        int amount = getBudgetByDate(date).amount;
+        int amount = getFullMonthAmount(date);
         return amount / date.lengthOfMonth();
+    }
+
+    private int getFullMonthAmount(LocalDate date) {
+        return getBudgetByDate(date).amount;
     }
 
     public double totalAmount(Timeline timeline) {
