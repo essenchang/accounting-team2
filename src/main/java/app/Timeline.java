@@ -2,11 +2,11 @@ package app;
 
 import java.time.LocalDate;
 
-public class Period {
+public class Timeline {
     private final LocalDate start;
     private final LocalDate end;
 
-    public Period(LocalDate start, LocalDate end) {
+    public Timeline(LocalDate start, LocalDate end) {
         this.start = start;
         this.end = end;
     }

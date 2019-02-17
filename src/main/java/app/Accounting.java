@@ -44,8 +44,8 @@ public class Accounting {
         return (getSingleDayBudget(start)) * (p.getDays() + 1);
     }
 
-    private boolean isCrossMonth(app.Period period) {
-        return period.getStart().getMonthValue() != period.getEnd().getMonthValue();
+    private boolean isCrossMonth(Timeline timeline) {
+        return timeline.getStart().getMonthValue() != timeline.getEnd().getMonthValue();
     }
 
     private double getCrossMonthBudget(LocalDate start, LocalDate end) {
@@ -74,12 +74,12 @@ public class Accounting {
         return getFullMonthBudget(date).amount / date.lengthOfMonth();
     }
 
-    public double totalAmount(app.Period period) {
-        if (period.getStart().isAfter(period.getEnd())) {
+    public double totalAmount(Timeline timeline) {
+        if (timeline.getStart().isAfter(timeline.getEnd())) {
             // 開始大於結束當錯誤輸入回傳0
             return 0;
         }
-        return isCrossMonth(new app.Period(period.getStart(), period.getEnd())) ?
-                getCrossMonthBudget(period.getStart(), period.getEnd()) : getSameMonth(period.getStart(), period.getEnd());
+        return isCrossMonth(new Timeline(timeline.getStart(), timeline.getEnd())) ?
+                getCrossMonthBudget(timeline.getStart(), timeline.getEnd()) : getSameMonth(timeline.getStart(), timeline.getEnd());
     }
 }

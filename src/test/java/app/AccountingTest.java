@@ -26,7 +26,7 @@ public class AccountingTest {
 
         LocalDate start = LocalDate.of(2019, 4, 1);
         LocalDate end = LocalDate.of(2019, 4, 30);
-        assertTrue(3000 == accounting.totalAmount(new Period(start, end)));
+        assertTrue(3000 == accounting.totalAmount(new Timeline(start, end)));
     }
 
     @Test
@@ -140,7 +140,7 @@ public class AccountingTest {
     }
 
     private void amountShouldBe(LocalDate start, LocalDate end, int i) {
-        assertEquals(i, accounting.totalAmount(new Period(start, end)), 0.00);
+        assertEquals(i, accounting.totalAmount(new Timeline(start, end)), 0.00);
     }
 
 
