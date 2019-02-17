@@ -44,15 +44,15 @@ public class Accounting {
         return (getSingleDayBudget(start)) * (p.getDays() + 1);
     }
 
-    private double getCrossMonthBudget(LocalDate start, LocalDate end) {
+    private double getCrossMonthBudget(Timeline timeline) {
         int intervalAmount = 0;
-        if (Period.between(start, end).getMonths() > 1) {
-            LocalDate intervalDate = start;
-            for (int i = start.getMonthValue(); i < end.getMonthValue() - 1; i++) {
+        if (Period.between(timeline.getStart(), timeline.getEnd()).getMonths() > 1) {
+            LocalDate intervalDate = timeline.getStart();
+            for (int i = timeline.getStart().getMonthValue(); i < timeline.getEnd().getMonthValue() - 1; i++) {
                 intervalAmount += getFullMonthBudget(intervalDate.plusMonths(1)).amount;
             }
         }
-        return getStartMonthAmount(start) + getEndMonthAmount(end) + intervalAmount;
+        return getStartMonthAmount(timeline.getStart()) + getEndMonthAmount(timeline.getEnd()) + intervalAmount;
     }
 
     private double getEndMonthAmount(LocalDate date) {
@@ -76,6 +76,6 @@ public class Accounting {
             return 0;
         }
         return timeline.isCrossMonth() ?
-                getCrossMonthBudget(timeline.getStart(), timeline.getEnd()) : getSameMonth(timeline.getStart(), timeline.getEnd());
+                getCrossMonthBudget(new Timeline(timeline.getStart(), timeline.getEnd())) : getSameMonth(timeline.getStart(), timeline.getEnd());
     }
 }
