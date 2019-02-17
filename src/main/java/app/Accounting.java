@@ -35,7 +35,7 @@ public class Accounting {
     }
 
     private double getCrossMonthBudget(Timeline timeline) {
-        int intervalAmount = 0;
+        double intervalAmount = 0;
         if (Period.between(timeline.getStart(), timeline.getEnd()).getMonths() > 1) {
             LocalDate intervalDate = timeline.getStart();
             for (int i = timeline.getStart().getMonthValue(); i < timeline.getEnd().getMonthValue() - 1; i++) {
@@ -57,11 +57,11 @@ public class Accounting {
     }
 
     private double getSingleDayBudget(LocalDate date) {
-        int amount = getFullMonthAmount(date);
+        double amount = getFullMonthAmount(date);
         return amount / date.lengthOfMonth();
     }
 
-    private int getFullMonthAmount(LocalDate date) {
+    private double getFullMonthAmount(LocalDate date) {
         return getBudgetByDate(date).amount;
     }
 
