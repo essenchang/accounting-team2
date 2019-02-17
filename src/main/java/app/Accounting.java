@@ -74,12 +74,12 @@ public class Accounting {
         return getFullMonthBudget(date).amount / date.lengthOfMonth();
     }
 
-    public double totalAmount(LocalDate start, LocalDate end) {
-        if (start.isAfter(end)) {
+    public double totalAmount(app.Period period) {
+        if (period.getStart().isAfter(period.getEnd())) {
             // 開始大於結束當錯誤輸入回傳0
             return 0;
         }
-        return isCrossMonth(start, end) ?
-                getCrossMonthBudget(start, end) : getSameMonth(start, end);
+        return isCrossMonth(period.getStart(), period.getEnd()) ?
+                getCrossMonthBudget(period.getStart(), period.getEnd()) : getSameMonth(period.getStart(), period.getEnd());
     }
 }
