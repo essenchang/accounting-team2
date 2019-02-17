@@ -76,6 +76,6 @@ public class Accounting {
             return 0;
         }
         return timeline.isCrossMonth() ?
-                getCrossMonthBudget(new Timeline(timeline.getStart(), timeline.getEnd())) : getSameMonth(new Timeline(timeline.getStart(), timeline.getEnd()));
+                getCrossMonthBudget(timeline) : getSameMonth(timeline);
     }
 }
