@@ -75,7 +75,7 @@ public class Accounting {
             // 開始大於結束當錯誤輸入回傳0
             return 0;
         }
-        return new Timeline(timeline.getStart(), timeline.getEnd()).isCrossMonth() ?
+        return timeline.isCrossMonth() ?
                 getCrossMonthBudget(timeline.getStart(), timeline.getEnd()) : getSameMonth(timeline.getStart(), timeline.getEnd());
     }
 }
